@@ -81,7 +81,7 @@ features.df <- str_match(dataset$feature,
          axis=tolower(X7)) %>%
   select(original, domain, acceleration_signal, signal_type, signal_dimension,
          `function`, axis)
-levels(features.df$signal_type) <- c("acceleration", "gyroscope")
+levels(features.df$signal_type) <- c("accelerometer", "gyroscope")
 levels(features.df$signal_dimension) <- c("jerk", "jerk magnitude", "magnitude")
 
 # Merge the clean features back into the main dataset and remove the now-unused
