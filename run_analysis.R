@@ -8,7 +8,7 @@
 #
 #     https://d396qusza40orc.cloudfront.net/getdata/projectfiles/UCI%20HAR%20Dataset.zip
 #
-# Make the resulting "UCI HAR Dataset" directory your working directory.
+# Put the resulting "UCI HAR Dataset" directory in your working directory.
 
 library(dplyr)
 library(readr)
@@ -33,24 +33,24 @@ read.col <- function(file) {
 
 # Load the feature names as a data frame with a single column. They'll be used
 # as column names when loading the X_* data.
-features <- read_delim("features.txt", " ",
+features <- read_delim("UCI HAR Dataset/features.txt", " ",
                        col_names=FALSE,
                        col_types="_c")[[1]]
 # Load the X_* training and testing data and combine them into a single data
 # frame.
-x <- rbind(read.x("train/X_train.txt", features),
-           read.x("test/X_test.txt", features))[, !duplicated(features)]
+x <- rbind(read.x("UCI HAR Dataset/train/X_train.txt", features),
+           read.x("UCI HAR Dataset/test/X_test.txt", features))[, !duplicated(features)]
 # Load the subject training and testing data and combine them into a single data
 # frame.
-subjects <- rbind(read.col("train/subject_train.txt"),
-                  read.col("test/subject_test.txt"))
+subjects <- rbind(read.col("UCI HAR Dataset/train/subject_train.txt"),
+                  read.col("UCI HAR Dataset/test/subject_test.txt"))
 
 # Load the activities. First the raw numbers are collected from the training and
 # testing data, then they're matched against the labels given in
 # activity_labels.txt. We're left with a two-column data frame.
-activities <- rbind(read.col("train/y_train.txt"),
-                    read.col("test/y_test.txt")) %>%
-              merge(read_delim("activity_labels.txt", " ",
+activities <- rbind(read.col("UCI HAR Dataset/train/y_train.txt"),
+                    read.col("UCI HAR Dataset/test/y_test.txt")) %>%
+              merge(read_delim("UCI HAR Dataset/activity_labels.txt", " ",
                                col_names=F,
                                col_types="ic"))
 
