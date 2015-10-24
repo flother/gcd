@@ -70,7 +70,7 @@ dataset <- x %>%
 features.df <- str_match(dataset$feature,
                          paste0("^(t|f)(Body|Gravity)(?:Body)?",
                                 "(Acc|Gyro)(JerkMag|Jerk|Mag)?-(mean|std)",
-                                "\\(\\)(?:-(X))?")) %>%
+                                "\\(\\)(?:-([XYZ]))?")) %>%
   data.frame() %>%
   mutate(original=X1,
          domain=ifelse(X2 == "t", "time", "frequency"),
